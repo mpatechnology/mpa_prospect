@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mpa technology – Produktionslinie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---------- Hero (Videos) ---------- */
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .stage video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+  }
+  .stage video.active { opacity: 1; }
+  .stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(10,16,20,0.82) 0%, rgba(10,16,20,0.05) 45%, rgba(10,16,20,0.25) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .stage-content {
+    position: absolute;
+    z-index: 2;
+    left: 0; right: 0; bottom: 0;
+    padding: clamp(28px, 5vw, 64px);
+    color: var(--white);
+  }
+  .stage-mark { font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ice); margin-bottom: 16px; }
+  .stage-content h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); max-width: 13ch; }
+  .stage-content p { margin-top: 16px; font-size: 1.05rem; color: #e6edf1; max-width: 46ch; line-height: 1.55; }
+  .scrolldown {
+    position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%);
+    font-size: 0.78rem; color: #cdd9df; letter-spacing: 0.03em;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .scrolldown .bar { width: 1px; height: 26px; background: rgba(255,255,255,0.5); }
+
+  /* ---------- Section framing (one long page) ---------- */
+  section.block {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 84px) clamp(20px, 5vw, 24px);
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 56px;
+  }
+  section.block:last-of-type { border-bottom: none; }
+  .block .eyebrow-name {
+    font-size: 0.92rem;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .block h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); max-width: 20ch; }
+  .block p.lede {
+    margin-top: 14px;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--steel);
+    max-width: 58ch;
+  }
+  .block .viewer-frame,
+  .block .gallery,
+  .block .textblock {
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .block .viewer-frame { margin-top: 28px; }
+  .block .gallery { margin-top: 28px; }
+  .block .textblock { margin-top: 20px; max-width: 62ch; padding: 0; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     Eine einzige durchgehend scrollbare Seite.
+     Reihenfolge: Hero-Videos -> Übersicht -> Module 1-6 -> Drucker -> Kontakt.
+     Bilder/Videos liegen im Ordner "bilder" (siehe BILDER-README.md).
+     ============================================================ -->
+
+<div class="stage" id="stage">
+  <video id="video-a" class="active" muted playsinline autoplay>
+    <source src="bilder/video-1.mp4" type="video/mp4">
+  </video>
+  <video id="video-b" muted playsinline>
+    <source src="bilder/video-2.mp4" type="video/mp4">
+  </video>
+  <video id="video-c" muted playsinline>
+    <source src="bilder/video-3.mp4" type="video/mp4">
+  </video>
+
+  <div class="stage-content">
+    <div class="stage-mark">mpa technology</div>
+    <h1>Eine Produktionslinie für empfindliche Lebensmittel</h1>
+    <p><!-- Text hier ersetzen -->Modular, hygienisch, für den Kühlkettenbereich ausgelegt – von der einzelnen Zuführungsstation bis zur kompletten Linie.</p>
+  </div>
+  <a href="#uebersicht" class="scrolldown"><span class="bar"></span>Scrollen</a>
+</div>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="topbar-brand" href="#stage">mpa technology</a>
+    <div class="topbar-links">
+      <a href="#uebersicht">Übersicht</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= ÜBERSICHT ================= -->
+<section class="block" id="uebersicht">
+  <div class="eyebrow-name">Komplettlösung</div>
+  <h2>Die Produktionslinie im Überblick</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Eine modulare, hygienisch ausgelegte Linie zur automatisierten Essenszusammenstellung – speziell für den Einsatz in Kühlhäusern konzipiert und um beliebige Module erweiterbar.</p>
+
+  <div class="gallery">
+    <img src="bilder/uebersicht-1.jpg" alt="Gesamtlinie – Ansicht 1">
+    <img src="bilder/uebersicht-2.jpg" alt="Gesamtlinie – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-uebersicht.html" title="3D-Ansicht Gesamtlinie" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Jedes Modul übernimmt eine eigene Zuführungsaufgabe – vom Teller bis zur Portionspackung – und lässt sich einzeln oder als komplette, aufeinander abgestimmte Linie einsetzen. Alle Stationen teilen sich ein einheitliches, hygienisch reinigungsfreundliches Gehäusekonzept aus Edelstahl.</p>
+    <p><!-- Text hier ersetzen -->Die Linie ist auf den Dauerbetrieb im Kühlbereich ausgelegt und lässt sich um weitere Module – etwa eine Bedruckungsstation – erweitern, ohne bestehende Stationen zu verändern.</p>
+  </div>
+
+  <div class="modgrid-heading" style="margin-top: clamp(40px, 5vw, 56px); padding: 0;">
+    <h2 style="font-size: 1.2rem;">Direkt zu einem Modul</h2>
+  </div>
+  <div class="modgrid" style="padding: 0; margin-top: 20px;">
+    <a href="#modul-1">
+      <img class="thumb" src="bilder/modul-1-a.jpg" alt="Aufleger Modul 1">
+      <div class="label"><div class="name">Modul 1</div><div class="tagline">Zuführung Teller</div></div>
+    </a>
+    <a href="#modul-2">
+      <img class="thumb" src="bilder/modul-2-a.jpg" alt="Aufleger Modul 2">
+      <div class="label"><div class="name">Modul 2</div><div class="tagline">Zuführung Tablett</div></div>
+    </a>
+    <a href="#modul-3">
+      <img class="thumb" src="bilder/modul-3-a.jpg" alt="Aufleger Modul 3">
+      <div class="label"><div class="name">Modul 3</div><div class="tagline">Zuführung Glosche</div></div>
+    </a>
+    <a href="#modul-4">
+      <img class="thumb" src="bilder/modul-4-a.jpg" alt="Aufleger Modul 4">
+      <div class="label"><div class="name">Modul 4</div><div class="tagline">Zuführung Aufschnitt</div></div>
+    </a>
+    <a href="#modul-5">
+      <img class="thumb" src="bilder/modul-5-a.jpg" alt="Aufleger Modul 5">
+      <div class="label"><div class="name">Modul 5</div><div class="tagline">Zuführung Portionspackungen</div></div>
+    </a>
+    <a href="#modul-6">
+      <img class="thumb" src="bilder/modul-6-a.jpg" alt="Aufleger Modul 6">
+      <div class="label"><div class="name">Modul 6</div><div class="tagline">Zuführung Schälchen</div></div>
+    </a>
+    <a href="#drucker">
+      <img class="thumb" src="bilder/drucker-a.jpg" alt="Drucker">
+      <div class="label"><div class="name">Zusatzstation</div><div class="tagline">Drucker</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- MODUL-SEKTIONEN werden unten per Skript eingefügt -->
+<section class="block" id="modul-1">
+  <div class="eyebrow-name">Aufleger Modul 1</div>
+  <h2>Zuführung Teller</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Vereinzelt Teller und übergibt sie lagegenau an die nachfolgende Station.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-1-a.jpg" alt="Zuführung Teller – Ansicht 1">
+    <img src="bilder/modul-1-b.jpg" alt="Zuführung Teller – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-1.html" title="3D-Ansicht Zuführung Teller" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Führt Teller vereinzelt und lagegenau der nachfolgenden Station zu. Edelstahlgehäuse mit Sichtfenster, für den Dauerbetrieb im Kühlbereich ausgelegt.</p>
+  </div>
+</section>
+
+<section class="block" id="modul-2">
+  <div class="eyebrow-name">Aufleger Modul 2</div>
+  <h2>Zuführung Tablett</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Übernimmt Tabletts aus dem Magazin und übergibt sie im festen Takt.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-2-a.jpg" alt="Zuführung Tablett – Ansicht 1">
+    <img src="bilder/modul-2-b.jpg" alt="Zuführung Tablett – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-2.html" title="3D-Ansicht Zuführung Tablett" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Übernimmt Tabletts aus dem Magazin und übergibt sie im festen Takt an das Förderband. Baugleiches Gehäusekonzept wie die übrigen Module für einheitliche Wartung.</p>
+  </div>
+</section>
+
+<section class="block" id="modul-3">
+  <div class="eyebrow-name">Aufleger Modul 3</div>
+  <h2>Zuführung Glosche</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Setzt die Glosche per Robotergreifer präzise auf das durchlaufende Produkt.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-3-a.jpg" alt="Zuführung Glosche – Ansicht 1">
+    <img src="bilder/modul-3-b.jpg" alt="Zuführung Glosche – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-3.html" title="3D-Ansicht Zuführung Glosche" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Setzt die Glosche mittels Robotergreifer präzise auf das durchlaufende Produkt. Der Sechsachs-Roboterarm arbeitet hinter einer Glastür, gut einsehbar für Wartung und Reinigung.</p>
+  </div>
+</section>
+
+<section class="block" id="modul-4">
+  <div class="eyebrow-name">Aufleger Modul 4</div>
+  <h2>Zuführung Aufschnitt</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Übernimmt geschnittene Wurst- und Käsescheiben direkt von der Schneidmaschine.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-4-a.jpg" alt="Zuführung Aufschnitt – Ansicht 1">
+    <img src="bilder/modul-4-b.jpg" alt="Zuführung Aufschnitt – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-4.html" title="3D-Ansicht Zuführung Aufschnitt" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Nimmt geschnittene Wurst- und Käsescheiben direkt von der Schneidmaschine auf und legt sie lagegenau auf das Band. Kompakte Bauweise für die Integration direkt an der Schneidstation.</p>
+  </div>
+</section>
+
+<section class="block" id="modul-5">
+  <div class="eyebrow-name">Aufleger Modul 5</div>
+  <h2>Zuführung Portionspackungen</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Führt kleine Portionspackungen aus mehreren parallelen Kanälen zu.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-5-a.jpg" alt="Zuführung Portionspackungen – Ansicht 1">
+    <img src="bilder/modul-5-b.jpg" alt="Zuführung Portionspackungen – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-5.html" title="3D-Ansicht Zuführung Portionspackungen" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Führt kleine Portionspackungen (z. B. Konfitüre, Margarine) aus drei parallelen Kanälen zu. Transparente Abdeckungen halten die Zuführung sauber einsehbar.</p>
+  </div>
+</section>
+
+<section class="block" id="modul-6">
+  <div class="eyebrow-name">Aufleger Modul 6</div>
+  <h2>Zuführung Schälchen</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Vereinzelt und positioniert kleine Schälchen für die nachfolgende Befüllung.</p>
+
+  <div class="gallery">
+    <img src="bilder/modul-6-a.jpg" alt="Zuführung Schälchen – Ansicht 1">
+    <img src="bilder/modul-6-b.jpg" alt="Zuführung Schälchen – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-modul-6.html" title="3D-Ansicht Zuführung Schälchen" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Vereinzelt und positioniert kleine Schälchen für die nachfolgende Befüllung. Gleiches Bedienkonzept wie die übrigen Zuführungsmodule.</p>
+  </div>
+</section>
+
+<section class="block" id="drucker">
+  <div class="eyebrow-name">Zusatzstation</div>
+  <h2>Drucker</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Bedruckt das durchlaufende Tablett mit einer Kennzeichnung.</p>
+
+  <div class="gallery">
+    <img src="bilder/drucker-a.jpg" alt="Drucker – Ansicht 1">
+    <img src="bilder/drucker-b.jpg" alt="Drucker – Ansicht 2">
+  </div>
+
+  <div class="viewer-frame">
+    <iframe src="viewer-drucker.html" title="3D-Ansicht Drucker" loading="lazy"></iframe>
+    <div class="viewer-caption">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+  </div>
+
+  <div class="textblock">
+    <p><!-- Text hier ersetzen -->Bedruckt das durchlaufende Tablett mit einer Kennzeichnung, während sich der Druckkopf auf einer Führungsschiene über das Produkt bewegt. Lässt sich an beliebiger Stelle in die Linie integrieren.</p>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section class="block" id="kontakt">
+  <div class="eyebrow-name">Kontakt</div>
+  <h2>Sprechen wir über Ihre Produktionslinie</h2>
+  <p class="lede"><!-- Text hier ersetzen -->Ob einzelnes Modul oder komplette Linie – wir beraten Sie zu Aufbau, Integration und Erweiterung für Ihren Kühlkettenbereich.</p>
+
+  <div class="textblock" style="margin-top:28px;">
+    <p><!-- Text hier ersetzen -->Ansprechpartner: Vorname Nachname<br>
+    E-Mail: <a href="mailto:info@mpa-technology.example">info@mpa-technology.example</a><br>
+    Telefon: <a href="tel:+490000000">+49 (0) 00 000000</a><br>
+    Adresse: Straße Nr., PLZ Ort</p>
+  </div>
+
+  <div style="margin-top:28px;">
+    <a class="btn solid" href="mailto:info@mpa-technology.example">Beratungsgespräch anfragen</a>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">mpa technology</div>
+  <a class="contact" href="#stage">Nach oben</a>
+</footer>
+
+<script>
+  const videos = [
+    document.getElementById('video-a'),
+    document.getElementById('video-b'),
+    document.getElementById('video-c')
+  ];
+  let currentIndex = 0;
+
+  function swap() {
+    const current = videos[currentIndex];
+    const nextIndex = (currentIndex + 1) % videos.length;
+    const next = videos[nextIndex];
+    next.currentTime = 0;
+    next.play();
+    current.classList.remove('active');
+    next.classList.add('active');
+    currentIndex = nextIndex;
+  }
+
+  videos.forEach(v => v.addEventListener('ended', swap));
+
+  // Falls ein Video (noch) fehlt oder nicht abspielt, nach 8s trotzdem weiterschalten.
+  setInterval(() => {
+    const current = videos[currentIndex];
+    if (current.paused && current.readyState < 2) swap();
+  }, 8000);
+</script>
+
+</body>
+</html>

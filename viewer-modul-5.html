@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anlage 3D-Ansicht (CAD-Modell)</title>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<style>
+  :root {
+    --ice-blue: #dbe6ef;
+    --accent: #1f6f78;
+    --text-dark: #1b2226;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    background: var(--text-dark);
+    color: #eef3f6;
+  }
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(10,16,20,0.55) 0%, rgba(10,16,20,0.15) 35%, rgba(10,16,20,0.65) 100%),
+      url("https://d8j0ntlcm91z4.cloudfront.net/user_3DfbD5WkrijHyLK8T0Fz1iICbPR/hf_20260831_123235_72e91941-7e91-40e1-95b4-0162d8b28118.png");
+    background-size: cover;
+    background-position: center;
+  }
+  .top-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 28px clamp(20px, 4vw, 56px) 0;
+    z-index: 3; pointer-events: none;
+  }
+  .brand-name { font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ice-blue); }
+  .brand-name strong { display: block; font-size: 1rem; letter-spacing: 0.02em; color: #ffffff; }
+  .headline {
+    max-width: 520px; margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 56px);
+    position: relative; z-index: 3; text-align: center; top: 8vh;
+    pointer-events: none;
+  }
+  .headline h1 {
+    margin: 0 0 10px; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600;
+    color: #ffffff; text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+  }
+  .headline p { margin: 0; font-size: 0.9rem; color: var(--ice-blue); text-shadow: 0 1px 10px rgba(0,0,0,0.4); }
+  model-viewer {
+    position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2;
+    --progress-bar-color: var(--accent);
+  }
+  .hint {
+    position: absolute; bottom: clamp(18px, 3vh, 34px); left: 50%; transform: translateX(-50%);
+    z-index: 3; padding: 10px 18px; border-radius: 999px;
+    background: rgba(15, 22, 26, 0.55); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.14); font-size: 0.8rem; color: var(--ice-blue); white-space: nowrap;
+  }
+  .status-banner {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+    color: #1b1400; font-size: 0.82rem; padding: 10px 20px; text-align: center; display: none;
+  }
+  .status-banner.error { background: rgba(200, 60, 60, 0.92); color: #fff; display: block; }
+  .status-banner.loading { background: rgba(180, 120, 20, 0.92); display: block; }
+</style>
+</head>
+<body>
+
+<div class="status-banner loading" id="statusBanner">Modell wird geladen …</div>
+
+<div class="stage">
+  <div class="top-bar">
+    <div class="brand-name"><strong>Aufleger Modul 5</strong></div>
+  </div>
+  <div class="headline">
+    <h1>Zuführung Portionspackungen</h1>
+  </div>
+  <model-viewer
+    id="viewer"
+    src="https://raw.githubusercontent.com/jonnytreude/Aufleger-Modul-5/main/Aufleger_Modul_5_final_v2.glb"
+    alt="3D-CAD-Modell der Anlage"
+    camera-controls
+    touch-action="pan-y"
+    shadow-intensity="0.9"
+    shadow-softness="0.8"
+    exposure="1.05"
+    environment-image="neutral"
+    camera-orbit="35deg 78deg auto"
+    field-of-view="32deg"
+  ></model-viewer>
+  <div class="hint">Ziehen zum Drehen · Scrollen zum Zoomen</div>
+</div>
+
+<script>
+  const banner = document.getElementById('statusBanner');
+  const viewer = document.getElementById('viewer');
+  viewer.addEventListener('load', () => { banner.style.display = 'none'; });
+  viewer.addEventListener('error', () => {
+    banner.textContent = 'Modell konnte nicht geladen werden.';
+    banner.className = 'status-banner error';
+  });
+</script>
+
+</body>
+</html>
