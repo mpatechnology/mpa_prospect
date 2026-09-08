@@ -117,12 +117,12 @@ img, video { display: block; max-width: 100%; }
 .gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: contain;
+  object-fit: cover;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--ice);
 }
-.gallery.single { grid-template-columns: 1fr; }
+#uebersicht .gallery img { object-fit: contain; }
 .gallery.single img { aspect-ratio: 16 / 9; }
 
 /* ---------- Body text block ---------- */
