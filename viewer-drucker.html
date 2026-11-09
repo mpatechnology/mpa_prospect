@@ -92,21 +92,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-const MODEL_URL = "https://raw.githubusercontent.com/jonnytreude/Drucker/main/Drucker_final_v5.glb";
-const MOVABLE_NODE_NAMES = [
-  "Volumenkörper100_4", "Volumenkörper101_3", "Volumenkörper102_1", "Volumenkörper103_1",
-  "Volumenkörper104_1", "Volumenkörper105_1", "Volumenkörper106_1", "Volumenkörper111_1",
-  "Volumenkörper112_1", "Volumenkörper113_1", "Volumenkörper132_1", "Volumenkörper133_1",
-  "Volumenkörper134_1", "Volumenkörper135_1", "Volumenkörper136_1", "Volumenkörper137_1",
-  "Volumenkörper138_1", "Volumenkörper139_1", "Volumenkörper140_1", "Volumenkörper141_1",
-  "Volumenkörper142_6", "Volumenkörper143_6", "Volumenkörper144_1", "Volumenkörper36_1",
-  "Volumenkörper37_1", "Volumenkörper39_4", "Volumenkörper40_1", "Volumenkörper41_1",
-  "Volumenkörper42_1", "Volumenkörper43_1", "Volumenkörper44_1", "Volumenkörper45_1",
-  "Volumenkörper46_1", "Volumenkörper47_1", "Volumenkörper48_1", "Volumenkörper49_1",
-  "Volumenkörper50_1", "Volumenkörper51_1", "Volumenkörper52_1", "Volumenkörper68_4",
-  "Volumenkörper69_3", "Volumenkörper70_4", "Volumenkörper71_3", "Volumenkörper74_1",
-  "Volumenkörper96_3", "Volumenkörper97_3", "Volumenkörper98_4", "Volumenkörper99_3"
-];
+const MODEL_URL = "modelle/Drucker_prospekt.glb";
+const MOVABLE_NODE_NAMES = ["Druckkopf"];
 
 const app = document.getElementById('app');
 const statusBanner = document.getElementById('statusBanner');
